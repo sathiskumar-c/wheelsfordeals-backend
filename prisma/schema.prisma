@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js" // Tells Prisma to generate the JS client
+}
+
+datasource db {
+  provider = "postgresql" // You're using PostgreSQL
+  url      = env("DATABASE_URL") // Uses the connection string from your .env file
+}
+
+model User {
+  id        Int      @id @default(autoincrement()) // Primary key, auto-incremented
+  email     String   @unique // Email must be unique
+  password  String // Password string
+  createdAt DateTime @default(now()) // Defaults to current time
+}
+
+model Bike {
+  id    Int    @id @default(autoincrement())
+  title String
+  price String
+  image String
+}
+
+model WhyChooseUs {
+  id    Int               @id @default(autoincrement())
+  title String
+  items WhyChooseUsItem[] @relation("SectionItems")
+}
+
+model WhyChooseUsItem {
+  id          Int    @id @default(autoincrement())
+  icon        String
+  title       String
+  description String
+  sectionId   Int
+  section     WhyChooseUs @relation("SectionItems", fields: [sectionId], references: [id], onDelete: Cascade)
+}
