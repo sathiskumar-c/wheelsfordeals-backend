@@ -20,4 +20,7 @@ app.use("/api/bikes", bikeRoutes);
 app.use("/api/whychooseus", whyChooseUsRoutes);
 
 
+
+
+
 export default app;
