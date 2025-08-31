@@ -1,28 +1,18 @@
+// This generator creates the Prisma Client for interacting with the database
 generator client {
-  provider = "prisma-client-js" // Tells Prisma to generate the JS client
+  provider = "prisma-client-js"
 }
 
+// Configuration for the database connection
 datasource db {
-  provider = "postgresql" // You're using PostgreSQL
-  url      = env("DATABASE_URL") // Uses the connection string from your .env file
+  provider = "postgresql" // Using PostgreSQL as the database
+  url      = env("DATABASE_URL") // Database URL from environment variables
 }
 
-model User {
-  id        Int      @id @default(autoincrement()) // Primary key, auto-incremented
-  email     String   @unique // Email must be unique
-  password  String // Password string
-  createdAt DateTime @default(now()) // Defaults to current time
-}
-
-model Bike {
-  id    Int    @id @default(autoincrement())
-  title String
-  price String
-  image String
-}
-
+// Model for "Why Choose Us" section
+// Stores section title and items in a single table using JSON for flexibility
 model WhyChooseUs {
-  id    Int    @id @default(autoincrement())
-  title String
-  items Json   // Store all items as a JSON array
+  id    Int    @id @default(autoincrement()) // Unique identifier for each section
+  title String // Section title (e.g., "Why Choose Us?")
+  items Json // Stores array of items with {icon, title, description} as JSON
 }
