@@ -1,5 +1,8 @@
 import express from "express";
-import { getWhyChooseUs } from "../../controllers/whyChooseUs.controller.js";
+import { getAbsoluteFileUrl } from "../../utils/paths.js";
+
+const controllerPath = getAbsoluteFileUrl("controllers/whyChooseUs.controller.js");
+const { getWhyChooseUs } = await import(controllerPath);
 
 const router = express.Router();
 
