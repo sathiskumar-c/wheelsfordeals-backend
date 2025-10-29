@@ -16,3 +16,24 @@ model WhyChooseUs {
   title String // Section title (e.g., "Why Choose Us?")
   items Json // Stores array of items with {icon, title, description} as JSON
 }
+
+enum Role {
+  CUSTOMER
+  ADMIN
+  SUPERADMIN
+}
+
+// User model
+model Users {
+  id          Int      @default(autoincrement())
+  userId      String   @id @unique @default(uuid())
+  name        String
+  email       String   @unique
+  password    String
+  phoneNumber String?
+  role        Role     @default(CUSTOMER)
+  isActive    Boolean  @default(true)
+  isDeleted   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
