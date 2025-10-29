@@ -1,10 +1,11 @@
 // Express Imports
 import express from "express";
 import cors from "cors";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 // Routes Imports
-import bikeRoutes from "./routes/bike.routes.js";
-import whyChooseUsRoutes from "./routes/whyChooseUs.route.js";
+import rootRouter from "./routes/index.routes.js";
 
 // Create Express app instance
 const app = express();
@@ -15,9 +16,10 @@ app.use(cors());
 // Parse incoming JSON requests
 app.use(express.json());
 
-// All routes
-app.use("/api/bikes", bikeRoutes);
-app.use("/api/whychooseus", whyChooseUsRoutes);
+app.use(morgan(":method :url :status  - :response-time ms"));
+app.use(cookieParser());
 
+// All routes
+app.use("/api", rootRouter);
 
 export default app;

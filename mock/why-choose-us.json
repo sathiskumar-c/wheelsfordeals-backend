@@ -20,6 +20,11 @@
       "icon": "/images/brands/honda.jpeg",
       "title": "Expert Bike Service",
       "description": "Our stress-free finance department that can find financial solutions to save you money."
+    },
+    {
+      "icon": "/images/brands/honda.jpeg",
+      "title": "Test Bike Service",
+      "description": "Our stress-free finance department that can find financial solutions to save you money."
     }
   ]
 }

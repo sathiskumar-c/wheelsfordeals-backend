@@ -1,45 +1,20 @@
-// import { PrismaClient } from "@prisma/client";
-// import fs from "fs";
+const fs = require("fs");
+const path = require("path");
 
-// const whyChooseUs = JSON.parse(fs.readFileSync("./mock/why-choose-us.json", "utf-8"));
-// const prisma = new PrismaClient();
+module.exports = async function (prisma) {
+  const filePath = path.join(__dirname, "../../mock/why-choose-us.json");
+  const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
-// async function seedWhyChooseUs() {
-//     console.log("🧹 Deleting old WhyChooseUs...");
-//     await prisma.whychooseus.deleteMany();
+  // Clear existing records
+  await prisma.whyChooseUs.deleteMany();
 
-//     console.log("🧹 Create new WhyChooseUs...");
-//     await prisma.whychooseus.createMany({ data: whyChooseUs });
+  // Insert new records
+  await prisma.whyChooseUs.create({
+    data: {
+      title: data.title,
+      items: data.whychooseusdata,
+    },
+  });
 
-//     console.log("✅ WhyChooseUs seeded successfully");
-// }
-
-// seedWhyChooseUs()
-//     .catch((error) => {
-//         console.error("❌ Failed to seed whychooseus:", error);
-//         process.exit(1);
-//     })
-//     .finally(() => prisma.$disconnect());
-
-import { PrismaClient } from "@prisma/client";
-import fs from "fs";
-const prisma = new PrismaClient();
-
-const data = JSON.parse(fs.readFileSync("./mock/why-choose-us.json", "utf-8"));
-
-async function main() {
-    const section = await prisma.whyChooseUs.create({
-        data: {
-            title: data.title,
-            items: {
-                create: data.whychooseusdata,
-            },
-        },
-    });
-
-    console.log("✅ Seeded successfully!");
-}
-
-main()
-    .catch((e) => console.error(e))
-    .finally(() => prisma.$disconnect());
+  console.log("✅ Seeded WhyChooseUs data");
+};
