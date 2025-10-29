@@ -1,5 +1,5 @@
 import express from "express";
-import { getWhyChooseUs } from "../controllers/whychooseus.controller.js";
+import { getWhyChooseUs } from "../../controllers/whychooseus.controller.js";
 
 const router = express.Router();
 
