@@ -1,12 +1,12 @@
 // Express Imports
 import express from "express";
-import bikeRoutes from "./bikesRoutes/bike.routes.js";
+import bikeRoutes from "./bikeRoutes/bike.routes.js";
 import whychooseusRoutes from "./commonRoutes/whyChooseUs.route.js";
 import authRoutes from "./authRoutes/auth.route.js";
 
 import authMiddleware from "../middlewares/auth.middleware.js";
 
-import userRoutes from "./user.route.js";
+import userRoutes from "./userRoutes/user.route.js";
 
 // Create a new router instance
 const router = express.Router();
