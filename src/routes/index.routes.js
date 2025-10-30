@@ -1,6 +1,7 @@
 // Express Imports
 import express from "express";
 import bikeRoutes from "./bikeRoutes/bike.routes.js";
+import whychooseusRoutes from "./commonRoutes/whyChooseUs.route.js";
 import authRoutes from "./authRoutes/auth.route.js";
 
 import authMiddleware from "../middlewares/auth.middleware.js";
@@ -14,6 +15,7 @@ router.use("/auth", authRoutes);
 
 // Route to get all bikes
 router.use("/bikes", bikeRoutes);
+router.use("/whychooseus", whychooseusRoutes);
 
 router.use(authMiddleware);
 
