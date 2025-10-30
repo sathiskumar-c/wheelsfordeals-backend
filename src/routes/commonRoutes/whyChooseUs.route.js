@@ -1,8 +1,8 @@
 import express from "express";
-import { getWhyChooseUs } from "../../controllers/whychooseus.controller.js";
+import * as WhyChooseUsController from "../../controllers/whyChooseUs.controller.js";
 
 const router = express.Router();
 
-router.get("/", getWhyChooseUs);
+router.get("/", WhyChooseUsController.getWhyChooseUs);
 
 export default router;
